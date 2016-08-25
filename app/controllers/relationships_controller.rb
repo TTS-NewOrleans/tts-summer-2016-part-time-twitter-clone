@@ -12,6 +12,14 @@ class RelationshipsController < ApplicationController
     end
   end
 
+  def destroy
+    @relationship = current_user.relationships.find(params[:id])
+    @relationship.destroy
+
+    flash[:notice] = "You have just completely DESTROYED your relationship!"
+    redirect_to profile_path(current_user.id)
+  end
+
   private
 
   def relationship_params
